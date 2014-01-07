@@ -28,8 +28,6 @@
 	SlideOutViewController *slideOutViewController;
 }
 
-@property (nonatomic, strong) NSDateFormatter *formatter;
-
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong) IBOutlet UINavigationController *navigationController;
 
@@ -38,6 +36,9 @@
 
 @property (strong, nonatomic) UIViewController *centerController;
 @property (strong, nonatomic) UIViewController *leftController;
+
+@property (nonatomic, strong) NSDateFormatter *formatter;
+@property (strong, nonatomic) NSString *chattyMarkup;
 
 - (IIViewDeckController*)generateControllerStack;
 
@@ -56,4 +57,3 @@
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 	
 @end
-

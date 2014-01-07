@@ -390,6 +390,10 @@
 		CDA26B6518234F4D00239BA9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6418234F4D00239BA9 /* AdSupport.framework */; };
 		CDA26B6618234F6000239BA9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6418234F4D00239BA9 /* AdSupport.framework */; };
 		CDA26B6718234F6800239BA9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA26B6218234F4100239BA9 /* Security.framework */; };
+		CDA749001877D7BF00A75E7A /* Chatty.html in Resources */ = {isa = PBXBuildFile; fileRef = CDA748FF1877D7BF00A75E7A /* Chatty.html */; };
+		CDA749011877D7BF00A75E7A /* Chatty.html in Resources */ = {isa = PBXBuildFile; fileRef = CDA748FF1877D7BF00A75E7A /* Chatty.html */; };
+		CDA749031878FBE800A75E7A /* Chatty.css in Resources */ = {isa = PBXBuildFile; fileRef = CDA749021878FBE800A75E7A /* Chatty.css */; };
+		CDA749041878FBE800A75E7A /* Chatty.css in Resources */ = {isa = PBXBuildFile; fileRef = CDA749021878FBE800A75E7A /* Chatty.css */; };
 		CDC0E9BC17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BD17F6886D007D3738 /* Post-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A817F6886D007D3738 /* Post-Indicator.png */; };
 		CDC0E9BE17F6886D007D3738 /* Post-Indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */; };
@@ -780,6 +784,8 @@
 		CDA26B5F18234F1C00239BA9 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.0.a; sourceTree = "<group>"; };
 		CDA26B6218234F4100239BA9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CDA26B6418234F4D00239BA9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		CDA748FF1877D7BF00A75E7A /* Chatty.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Chatty.html; path = Templates/Chatty.html; sourceTree = "<group>"; };
+		CDA749021878FBE800A75E7A /* Chatty.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = Chatty.css; path = Templates/Chatty.css; sourceTree = "<group>"; };
 		CDC0E9A817F6886D007D3738 /* Post-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator.png"; path = "Assets/Post-Indicator.png"; sourceTree = "<group>"; };
 		CDC0E9A917F6886D007D3738 /* Post-Indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator@2x.png"; path = "Assets/Post-Indicator@2x.png"; sourceTree = "<group>"; };
 		CDC0E9AA17F6886D007D3738 /* Post-Indicator-Reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Post-Indicator-Reply.png"; path = "Assets/Post-Indicator-Reply.png"; sourceTree = "<group>"; };
@@ -1481,6 +1487,8 @@
 				CD7C247F1754689100D90942 /* ReviewPost.html */,
 				CD7C24801754689100D90942 /* Story.html */,
 				CD7C24821754689100D90942 /* Youtube.html */,
+				CDA748FF1877D7BF00A75E7A /* Chatty.html */,
+				CDA749021878FBE800A75E7A /* Chatty.css */,
 			);
 			name = Templates;
 			sourceTree = "<group>";
@@ -1575,6 +1583,7 @@
 				FA6EDD6A0F70D95A00AAF4E4 /* ThreadCell.xib in Resources */,
 				CD7F2F3317FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png in Resources */,
 				CD43710D1803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png in Resources */,
+				CDA749001877D7BF00A75E7A /* Chatty.html in Resources */,
 				CD7ADD0A17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */,
 				CDDAC2D317F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
 				CDA1FA1E1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */,
@@ -1625,6 +1634,7 @@
 				CD4371071803A4E0008D9DCF /* List-Lifespan-100.png in Resources */,
 				CD4370F31803A4E0008D9DCF /* List-Lifespan-50-Participant.png in Resources */,
 				CD7ADCF617EF17FA00B4C886 /* MessagesViewController-iPad.xib in Resources */,
+				CDA749031878FBE800A75E7A /* Chatty.css in Resources */,
 				CD48680F17EB5B430071F3D7 /* Fart1.mp3 in Resources */,
 				FA04878F11640DA800290D2D /* SendMessageViewController.xib in Resources */,
 				A254B843116FFE9A001534FF /* MenuBorder.png in Resources */,
@@ -1770,6 +1780,7 @@
 				CD7ADD1617EF180E00B4C886 /* MessageCell-iPad.xib in Resources */,
 				CD7F2F3417FE85BE00E7EAE3 /* Keyboard-Color-Lime@2x.png in Resources */,
 				CD43710E1803A4E0008D9DCF /* List-Lifespan-Empty-Participant@2x.png in Resources */,
+				CDA749011877D7BF00A75E7A /* Chatty.html in Resources */,
 				CDA1175216C1DC6600CE1375 /* ChattyViewController.xib in Resources */,
 				CDDAC2D417F44E78000FEC8A /* Thread-Toolbar-Tag@2x.png in Resources */,
 				CDA1FA1F1806C15E0036F7B6 /* MenuBorder@2x.png in Resources */,
@@ -1820,6 +1831,7 @@
 				CD4371081803A4E0008D9DCF /* List-Lifespan-100.png in Resources */,
 				CD4370F41803A4E0008D9DCF /* List-Lifespan-50-Participant.png in Resources */,
 				CDA1178516C1DC6600CE1375 /* StoryViewController.xib in Resources */,
+				CDA749041878FBE800A75E7A /* Chatty.css in Resources */,
 				CD7ADCF117EF17FA00B4C886 /* BrowserViewController-iPad.xib in Resources */,
 				CD48681017EB5B430071F3D7 /* Fart1.mp3 in Resources */,
 				CDA1179916C1DC6600CE1375 /* SendMessageViewController.xib in Resources */,

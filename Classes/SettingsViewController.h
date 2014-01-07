@@ -31,6 +31,7 @@
     UISwitch    *chromeSwitch;
 //    UISwitch    *pushMessagesSwitch;
     UISwitch    *modToolsSwitch;
+    UISwitch    *chattyTagsSwitch;
   
     UISwitch    *interestingSwitch;
     UISwitch    *offtopicSwitch;

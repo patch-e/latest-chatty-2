@@ -144,6 +144,7 @@
                                      [NSNumber numberWithBool:NO],  @"darkMode",
                                      [NSNumber numberWithBool:NO],  @"superSecretFartMode",
                                      [NSNumber numberWithBool:YES], @"saveSearches",
+                                     [NSNumber numberWithBool:NO], @"chattyTags",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
@@ -205,6 +206,11 @@
     // update collapsedThreads array and sync user defaults
     [defaults setObject:collapsedThreadsToKeep forKey:@"collapsedThreads"];
     [defaults synchronize];
+    
+    StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Chatty.html"];
+    NSString *stylesheet = [NSString stringFromResource:@"Chatty.css"];
+    [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
+    self.chattyMarkup = htmlTemplate.result;
     
     return YES;
 }

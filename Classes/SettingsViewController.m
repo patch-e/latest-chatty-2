@@ -57,6 +57,7 @@
         safariSwitch       = [self generateSwitchWithKey:@"useSafari"];
 //        pushMessagesSwitch = [[self generateSwitchWithKey:@"push.messages"] retain];
         modToolsSwitch     = [self generateSwitchWithKey:@"modTools"];
+        chattyTagsSwitch   = [self generateSwitchWithKey:@"chattyTags"];
         
         interestingSwitch  = [self generateSwitchWithKey:@"postCategory.informative"];
         offtopicSwitch     = [self generateSwitchWithKey:@"postCategory.offtopic"];
@@ -307,6 +308,7 @@
     [defaults setBool:chromeSwitch .on          forKey:@"useChrome"];
 //	[defaults setBool:pushMessagesSwitch.on     forKey:@"push.messages"];
     [defaults setBool:modToolsSwitch.on         forKey:@"modTools"];
+    [defaults setBool:chattyTagsSwitch.on       forKey:@"chattyTags"];
 	
     //	if (pushMessagesSwitch.on) {
     //        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
@@ -530,27 +532,32 @@
 				cell.textLabel.text = @"Allow Landscape:";
 				break;
                 
-			case 2:
+            case 2:
+				cell.accessoryView = chattyTagsSwitch;
+				cell.textLabel.text = @"Chatty Tags:";
+				break;
+                
+			case 3:
 				cell.accessoryView = youtubeSwitch;
 				cell.textLabel.text = @"Embed YouTube:";
 				break;
                 
-			case 3:
+			case 4:
 				cell.accessoryView = modToolsSwitch;
 				cell.textLabel.text = @"Mod Tools:";
 				break;
                 
-			case 4:
+			case 5:
 				cell.accessoryView = saveSearchesSwitch;
 				cell.textLabel.text = @"Save Searches:";
 				break;
                 
-            case 5:
+            case 6:
 				cell.accessoryView = safariSwitch;
 				cell.textLabel.text = @"Use Safari:";
 				break;
                 
-			case 6:
+			case 7:
 				cell.accessoryView = chromeSwitch;
 				cell.textLabel.text = @"Use Chrome:";
 				break;

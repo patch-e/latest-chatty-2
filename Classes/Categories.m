@@ -58,7 +58,8 @@
 
 + (UIColor *)lcTextShadowColor {
     static UIColor *color = nil;
-    if (!color) color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    // shadow colors disabled by means of zero alpha, left the code that sets text shadow throughout the source untouched
+    if (!color) color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
     return color;
 }
 
