@@ -1,7 +1,7 @@
 latest-chatty-2
 ===============
 
-Updated for iOS 7!ß
+Updated for iOS 7!
 
 4.1
 ====
