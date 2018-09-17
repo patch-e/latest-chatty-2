@@ -8,7 +8,9 @@
 
 #import "SearchResultsViewController.h"
 
-@interface SearchViewController : UIViewController <UITextFieldDelegate> {
+#import "ChattySplitViewRootVCProtocol.h"
+
+@interface SearchViewController : UIViewController <UITextFieldDelegate, ChattySplitViewRootVCProtocol> {
     IBOutlet UITableView *inputTable;
     IBOutlet UISegmentedControl *segmentedBar;
     IBOutlet UIView *recentSearchView;

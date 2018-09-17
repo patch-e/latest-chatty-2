@@ -7,6 +7,7 @@
 //
 
 #import "ThreadViewController.h"
+#import "ChattySplitViewController.h"
 #import "SendMessageViewController.h"
 #import "MBProgressHUD.h"
 #import "LCBrowserType.h"
@@ -76,7 +77,7 @@
 
 - (UIViewController *)showingViewController {
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+        return [LatestChatty2AppDelegate delegate].splitViewController;
     } else {
         return self;
     }
@@ -685,7 +686,7 @@
                                                otherButtonTitles:@"lol", @"inf", @"unf", @"tag", @"wtf", @"ugh", nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+        [dialog showInView:[LatestChatty2AppDelegate delegate].splitViewController.view];
     } else {
         [dialog showInView:self.view];
     }
@@ -699,7 +700,7 @@
                                          otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [dialog showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+        [dialog showInView:[LatestChatty2AppDelegate delegate].splitViewController.view];
     } else {
         [dialog showInView:self.view];
     }
@@ -799,7 +800,7 @@
                                                   destructiveButtonTitle:nil
                                                        otherButtonTitles:@"Stupid", @"Offtopic", @"NWS", @"Political", @"Informative", @"Nuked", @"Ontopic", nil];
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [modActionSheet showInView:[LatestChatty2AppDelegate delegate].slideOutViewController.view];
+        [modActionSheet showInView:[LatestChatty2AppDelegate delegate].splitViewController.view];
     } else {
         [modActionSheet showInView:self.view];
     }
@@ -927,6 +928,12 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+#pragma mark - ChattySplitViewRootVCProtocol
+
+- (BOOL)canActAsRootForSplitViewEvents {
+    return YES;
 }
 
 #pragma mark Cleanup

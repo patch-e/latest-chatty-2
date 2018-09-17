@@ -17,10 +17,15 @@
 		28C286E10D94DF7D0034E888 /* StoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* StoriesViewController.m */; };
 		5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
+		59BB9789214EF90400B0A09C /* ChattySplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BB9788214EF90400B0A09C /* ChattySplitViewController.m */; };
+		59BB978A214EF90400B0A09C /* ChattySplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BB9788214EF90400B0A09C /* ChattySplitViewController.m */; };
+		59BB978D214F0B7F00B0A09C /* UITraitCollection+Chatty.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BB978C214F0B7F00B0A09C /* UITraitCollection+Chatty.m */; };
+		59BB978E214F0B7F00B0A09C /* UITraitCollection+Chatty.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BB978C214F0B7F00B0A09C /* UITraitCollection+Chatty.m */; };
+		59BB9793214F372800B0A09C /* ChattySplitViewPrimaryContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BB9792214F372800B0A09C /* ChattySplitViewPrimaryContainer.m */; };
+		59BB9794214F372800B0A09C /* ChattySplitViewPrimaryContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BB9792214F372800B0A09C /* ChattySplitViewPrimaryContainer.m */; };
 		59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
 		59EC55B517EDF56700F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
-		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
 		CD025E601FB5C80900695C8A /* SSWAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5B1FB5C80900695C8A /* SSWAnimator.m */; };
 		CD025E611FB5C80900695C8A /* SSWAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD025E5B1FB5C80900695C8A /* SSWAnimator.m */; };
@@ -137,8 +142,6 @@
 		CD7ADD0517EF17FA00B4C886 /* SendMessageViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADCEA17EF17FA00B4C886 /* SendMessageViewController-iPad.xib */; };
 		CD7ADD0617EF17FA00B4C886 /* SettingsViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADCEB17EF17FA00B4C886 /* SettingsViewController-iPad.xib */; };
 		CD7ADD0717EF17FA00B4C886 /* SettingsViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADCEB17EF17FA00B4C886 /* SettingsViewController-iPad.xib */; };
-		CD7ADD0817EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADCEC17EF17FA00B4C886 /* SlideOutViewController-iPad.xib */; };
-		CD7ADD0917EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADCEC17EF17FA00B4C886 /* SlideOutViewController-iPad.xib */; };
 		CD7ADD0A17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADCED17EF17FA00B4C886 /* StoriesViewController-iPad.xib */; };
 		CD7ADD0B17EF17FA00B4C886 /* StoriesViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADCED17EF17FA00B4C886 /* StoriesViewController-iPad.xib */; };
 		CD7ADD0C17EF17FA00B4C886 /* StoryViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7ADCEE17EF17FA00B4C886 /* StoryViewController-iPad.xib */; };
@@ -360,7 +363,6 @@
 		CDA117F116C1DC6600CE1375 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACD9A7B0F9E2F33009D9A15 /* SearchResultsViewController.m */; };
 		CDA1180216C1DC6600CE1375 /* Mod.m in Sources */ = {isa = PBXBuildFile; fileRef = FA08ADB2112B40E800B89890 /* Mod.m */; };
 		CDA1181616C1DC6600CE1375 /* SendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */; };
-		CDA1181716C1DC6600CE1375 /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		CDA1181A16C1DC6600CE1375 /* GoogleChromeActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804C8162211810094A3F1 /* GoogleChromeActivity.m */; };
 		CDA1181B16C1DC6600CE1375 /* AppleSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1804D0162338F90094A3F1 /* AppleSafariActivity.m */; };
 		CDA1181D16C1DC6600CE1375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -596,6 +598,13 @@
 		4EC5A7720B5277EB4E180C4D /* Pods-LatestChatty2 beta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.debug.xcconfig"; sourceTree = "<group>"; };
 		5907C5AC10A69A0A0028D630 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		59BB9787214EF90400B0A09C /* ChattySplitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChattySplitViewController.h; sourceTree = "<group>"; };
+		59BB9788214EF90400B0A09C /* ChattySplitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChattySplitViewController.m; sourceTree = "<group>"; };
+		59BB978B214F0B7F00B0A09C /* UITraitCollection+Chatty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITraitCollection+Chatty.h"; sourceTree = "<group>"; };
+		59BB978C214F0B7F00B0A09C /* UITraitCollection+Chatty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITraitCollection+Chatty.m"; sourceTree = "<group>"; };
+		59BB978F214F0FAC00B0A09C /* ChattySplitViewRootVCProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChattySplitViewRootVCProtocol.h; sourceTree = "<group>"; };
+		59BB9791214F372800B0A09C /* ChattySplitViewPrimaryContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChattySplitViewPrimaryContainer.h; sourceTree = "<group>"; };
+		59BB9792214F372800B0A09C /* ChattySplitViewPrimaryContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChattySplitViewPrimaryContainer.m; sourceTree = "<group>"; };
 		59EC55B017EDF29C00F513A9 /* NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Regex.h"; path = "Classes/NSString+Regex.h"; sourceTree = "<group>"; };
 		59EC55B117EDF29C00F513A9 /* NSString+Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Regex.m"; path = "Classes/NSString+Regex.m"; sourceTree = "<group>"; };
 		5C6DFB06CC0FECD15B1106F9 /* Pods-LatestChatty2 beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2 beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2 beta/Pods-LatestChatty2 beta.release.xcconfig"; sourceTree = "<group>"; };
@@ -606,8 +615,6 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		922E140961FA7B1591624775 /* Pods-LatestChatty2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.debug.xcconfig"; sourceTree = "<group>"; };
 		A254B841116FFE9A001534FF /* MenuBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorder.png; path = Assets/MenuBorder.png; sourceTree = "<group>"; };
-		A254B845116FFEB0001534FF /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
-		A254B846116FFEB0001534FF /* SlideOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutViewController.m; sourceTree = "<group>"; };
 		A27EA7211171E60D0072EB59 /* SliderDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SliderDivider.png; path = Assets/SliderDivider.png; sourceTree = "<group>"; };
 		CD025E5A1FB5C80900695C8A /* SloppySwiper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SloppySwiper.h; sourceTree = "<group>"; };
 		CD025E5B1FB5C80900695C8A /* SSWAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSWAnimator.m; sourceTree = "<group>"; };
@@ -679,7 +686,6 @@
 		CD7ADCE917EF17FA00B4C886 /* SearchViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SearchViewController-iPad.xib"; path = "iPad/SearchViewController-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADCEA17EF17FA00B4C886 /* SendMessageViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SendMessageViewController-iPad.xib"; path = "iPad/SendMessageViewController-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADCEB17EF17FA00B4C886 /* SettingsViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewController-iPad.xib"; path = "iPad/SettingsViewController-iPad.xib"; sourceTree = "<group>"; };
-		CD7ADCEC17EF17FA00B4C886 /* SlideOutViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SlideOutViewController-iPad.xib"; path = "iPad/SlideOutViewController-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADCED17EF17FA00B4C886 /* StoriesViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "StoriesViewController-iPad.xib"; path = "iPad/StoriesViewController-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADCEE17EF17FA00B4C886 /* StoryViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "StoryViewController-iPad.xib"; path = "iPad/StoryViewController-iPad.xib"; sourceTree = "<group>"; };
 		CD7ADCEF17EF17FA00B4C886 /* ThreadViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ThreadViewController-iPad.xib"; path = "iPad/ThreadViewController-iPad.xib"; sourceTree = "<group>"; };
@@ -1031,7 +1037,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA = {
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1111,6 +1117,20 @@
 				D47EA8F7537F20929DBF79E8 /* libPods-LatestChatty2 beta.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59BB9790214F36E300B0A09C /* Split View */ = {
+			isa = PBXGroup;
+			children = (
+				59BB978B214F0B7F00B0A09C /* UITraitCollection+Chatty.h */,
+				59BB978C214F0B7F00B0A09C /* UITraitCollection+Chatty.m */,
+				59BB9787214EF90400B0A09C /* ChattySplitViewController.h */,
+				59BB9788214EF90400B0A09C /* ChattySplitViewController.m */,
+				59BB978F214F0FAC00B0A09C /* ChattySplitViewRootVCProtocol.h */,
+				59BB9791214F372800B0A09C /* ChattySplitViewPrimaryContainer.h */,
+				59BB9792214F372800B0A09C /* ChattySplitViewPrimaryContainer.m */,
+			);
+			name = "Split View";
 			sourceTree = "<group>";
 		};
 		59EC55AF17EDF27900F513A9 /* Regex */ = {
@@ -1235,7 +1255,6 @@
 				CD7ADCE917EF17FA00B4C886 /* SearchViewController-iPad.xib */,
 				CD7ADCEA17EF17FA00B4C886 /* SendMessageViewController-iPad.xib */,
 				CD7ADCEB17EF17FA00B4C886 /* SettingsViewController-iPad.xib */,
-				CD7ADCEC17EF17FA00B4C886 /* SlideOutViewController-iPad.xib */,
 				CD7ADCED17EF17FA00B4C886 /* StoriesViewController-iPad.xib */,
 				CD7ADCEE17EF17FA00B4C886 /* StoryViewController-iPad.xib */,
 				CD7ADCEF17EF17FA00B4C886 /* ThreadViewController-iPad.xib */,
@@ -1296,8 +1315,6 @@
 				FA87BD660F7AE96B0044898C /* SettingsViewController.h */,
 				FA87BD670F7AE96B0044898C /* SettingsViewController.m */,
 				CDA14F2F1FB40B29000A8C0A /* SettingsViewController.xib */,
-				A254B845116FFEB0001534FF /* SlideOutViewController.h */,
-				A254B846116FFEB0001534FF /* SlideOutViewController.m */,
 				28C286DF0D94DF7D0034E888 /* StoriesViewController.h */,
 				28C286E00D94DF7D0034E888 /* StoriesViewController.m */,
 				CD7C247A1754674100D90942 /* StoriesViewController.xib */,
@@ -1307,6 +1324,7 @@
 				FAA849960F78C29900026446 /* ThreadViewController.h */,
 				FAA849970F78C29900026446 /* ThreadViewController.m */,
 				FAA849990F78C2B000026446 /* ThreadViewController.xib */,
+				59BB9790214F36E300B0A09C /* Split View */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1625,7 +1643,7 @@
 				German,
 				en,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1788,7 +1806,6 @@
 				CDDAC2FB17F44E78000FEC8A /* Settings-Active.png in Resources */,
 				CD7F2F3D17FE85BE00E7EAE3 /* Keyboard-Color-Pink.png in Resources */,
 				CD7F2F3117FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */,
-				CD7ADD0817EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */,
 				CDDAC2F317F44E78000FEC8A /* Stories-Active.png in Resources */,
 				CD4371051803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png in Resources */,
 				CDDAC2E917F44E78000FEC8A /* Take-Photo.png in Resources */,
@@ -2002,7 +2019,6 @@
 				CD7F2F3217FE85BE00E7EAE3 /* Keyboard-Color-Lime.png in Resources */,
 				CD7ADCF917EF17FA00B4C886 /* MessageViewController-iPad.xib in Resources */,
 				CD7ADCF717EF17FA00B4C886 /* MessagesViewController-iPad.xib in Resources */,
-				CD7ADD0917EF17FA00B4C886 /* SlideOutViewController-iPad.xib in Resources */,
 				CDDAC2F417F44E78000FEC8A /* Stories-Active.png in Resources */,
 				CD4371061803A4E0008D9DCF /* List-Lifespan-100-Participant@2x.png in Resources */,
 				CDDAC2EA17F44E78000FEC8A /* Take-Photo.png in Resources */,
@@ -2174,6 +2190,7 @@
 				59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */,
 				FA04800D0F70BD0500F752A6 /* Post.m in Sources */,
 				FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */,
+				59BB9793214F372800B0A09C /* ChattySplitViewPrimaryContainer.m in Sources */,
 				FA6EDD6F0F70DA0400AAF4E4 /* ThreadCell.m in Sources */,
 				FA6EDE480F70EB4900AAF4E4 /* StoryViewController.m in Sources */,
 				FABA5DC20F718086008EEE3A /* StringTemplate.m in Sources */,
@@ -2182,10 +2199,12 @@
 				FAA849980F78C29900026446 /* ThreadViewController.m in Sources */,
 				CD025E601FB5C80900695C8A /* SSWAnimator.m in Sources */,
 				FAA84AFF0F78DD9F00026446 /* ReplyCell.m in Sources */,
+				59BB978D214F0B7F00B0A09C /* UITraitCollection+Chatty.m in Sources */,
 				FAB2F8700F7985FB000E4DC9 /* GrippyBar.m in Sources */,
 				CD025E621FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */,
 				FA87BD680F7AE96B0044898C /* SettingsViewController.m in Sources */,
 				FA87BE8E0F7B1B9D0044898C /* ComposeViewController.m in Sources */,
+				59BB9789214EF90400B0A09C /* ChattySplitViewController.m in Sources */,
 				FAB765F60F7C9E5B00CE0E38 /* BrowserViewController.m in Sources */,
 				FA2B475C0F7E1DDB0074064A /* Image.m in Sources */,
 				FA26AD080F80F85C00EB5FF0 /* Tag.m in Sources */,
@@ -2199,7 +2218,6 @@
 				FACD9A7C0F9E2F33009D9A15 /* SearchResultsViewController.m in Sources */,
 				FA08ADB3112B40E800B89890 /* Mod.m in Sources */,
 				FA04878E11640DA800290D2D /* SendMessageViewController.m in Sources */,
-				A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */,
 				CD1804C9162211810094A3F1 /* GoogleChromeActivity.m in Sources */,
 				CD1328D217DD7912009A5AE3 /* MBProgressHUD.m in Sources */,
 				CD1804D1162338F90094A3F1 /* AppleSafariActivity.m in Sources */,
@@ -2251,6 +2269,7 @@
 				59EC55B517EDF56700F513A9 /* NSString+Regex.m in Sources */,
 				CDA117D616C1DC6600CE1375 /* Post.m in Sources */,
 				CDA117D716C1DC6600CE1375 /* ChattyViewController.m in Sources */,
+				59BB9794214F372800B0A09C /* ChattySplitViewPrimaryContainer.m in Sources */,
 				CDA117D816C1DC6600CE1375 /* ThreadCell.m in Sources */,
 				CDA117D916C1DC6600CE1375 /* StoryViewController.m in Sources */,
 				CDA117DC16C1DC6600CE1375 /* StringTemplate.m in Sources */,
@@ -2259,10 +2278,12 @@
 				CDA117DF16C1DC6600CE1375 /* ThreadViewController.m in Sources */,
 				CD025E611FB5C80900695C8A /* SSWAnimator.m in Sources */,
 				CDA117E016C1DC6600CE1375 /* ReplyCell.m in Sources */,
+				59BB978E214F0B7F00B0A09C /* UITraitCollection+Chatty.m in Sources */,
 				CDA117E216C1DC6600CE1375 /* GrippyBar.m in Sources */,
 				CD025E631FB5C80900695C8A /* SSWDirectionalPanGestureRecognizer.m in Sources */,
 				CDA117E316C1DC6600CE1375 /* SettingsViewController.m in Sources */,
 				CDA117E416C1DC6600CE1375 /* ComposeViewController.m in Sources */,
+				59BB978A214EF90400B0A09C /* ChattySplitViewController.m in Sources */,
 				CDA117E516C1DC6600CE1375 /* BrowserViewController.m in Sources */,
 				CDA117E816C1DC6600CE1375 /* Image.m in Sources */,
 				CDA117E916C1DC6600CE1375 /* Tag.m in Sources */,
@@ -2276,7 +2297,6 @@
 				CDA117F116C1DC6600CE1375 /* SearchResultsViewController.m in Sources */,
 				CDA1180216C1DC6600CE1375 /* Mod.m in Sources */,
 				CDA1181616C1DC6600CE1375 /* SendMessageViewController.m in Sources */,
-				CDA1181716C1DC6600CE1375 /* SlideOutViewController.m in Sources */,
 				CDA1181A16C1DC6600CE1375 /* GoogleChromeActivity.m in Sources */,
 				CD1328D317DD7912009A5AE3 /* MBProgressHUD.m in Sources */,
 				CDA1181B16C1DC6600CE1375 /* AppleSafariActivity.m in Sources */,

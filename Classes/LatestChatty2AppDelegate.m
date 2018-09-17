@@ -7,10 +7,13 @@
 //
 
 #import "LatestChatty2AppDelegate.h"
+
+#import "ChattySplitViewController.h"
 #import "StringTemplate.h"
 #import "Mod.h"
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
+#import "UITraitCollection+Chatty.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
@@ -21,7 +24,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 @synthesize window,
             navigationController,
             contentNavigationController,
-            slideOutViewController,
+            splitViewController,
             formatter,
             launchedShortcutItem;
 
@@ -64,18 +67,18 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 //    }
     
     // combine left and right navigation controllers into the slideout controller
-    self.slideOutViewController =  [SlideOutViewController controllerWithNib];
-    [slideOutViewController addNavigationController:navigationController contentNavigationController:contentNavigationController];
+    self.splitViewController = [[ChattySplitViewController alloc] initWithPrimary:navigationController
+                                                                           detail:contentNavigationController];
 
     CGRect windowBounds = [[[UIApplication sharedApplication] keyWindow] bounds];
-    [slideOutViewController.view setFrame:windowBounds];
+    [splitViewController.view setFrame:windowBounds];
 
     UIView *topBar = [UIView viewWithFrame:CGRectMake(0, 0, windowBounds.size.width, 20)];
     topBar.backgroundColor = [UIColor lcTableBackgroundColor];
     [topBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [slideOutViewController.view addSubview:topBar];
+    [splitViewController.view addSubview:topBar];
     
-    self.window.rootViewController = slideOutViewController;
+    self.window.rootViewController = splitViewController;
 }
 
 - (IIViewDeckController *)generateControllerStack:(NSDictionary *)launchOptions {
@@ -526,22 +529,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
 }
 
-- (BOOL)isCompactView {
-    BOOL result = [self isPadDevice] && [[UIApplication sharedApplication] keyWindow].bounds.size.width <= 320.0f;
-    
-//    NSLog(@"is compact view? %@", (result ? @"YES" : @"NO"));
-    
-    return result;
-}
-
-- (BOOL)isSplitView {
-    BOOL result = [self isPadDevice] && [[UIApplication sharedApplication] keyWindow].bounds.size.width < 768.0f;
-    
-    //    NSLog(@"is compact view? %@", (result ? @"YES" : @"NO"));
-    
-    return result;
-}
-
 - (BOOL)isForceTouchEnabled {
     BOOL result = NO;
     
@@ -587,7 +574,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 //    NSLog(@"post active notification");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateViewsForMultitasking" object:self];
     
     if (!launchedShortcutItem) {
         return;
@@ -645,7 +631,12 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
 - (void)handleViewController:(UIViewController *)viewController {
     if ([self isPadDevice]) {
-        [self.contentNavigationController pushViewController:viewController animated:YES];
+        if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
+            [self.contentNavigationController pushViewController:viewController animated:YES];
+        }
+        else {
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
     } else {
         // close view deck menu if it was opened
         [[self.navigationController viewDeckController] closeLeftView];

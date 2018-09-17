@@ -514,6 +514,12 @@
     return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+#pragma mark - ChattySplitViewRootVCProtocol
+
+- (BOOL)canActAsRootForSplitViewEvents {
+    return YES;
+}
+
 #pragma mark Cleanup
 
 - (void)dealloc {

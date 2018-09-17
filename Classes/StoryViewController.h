@@ -10,9 +10,13 @@
 #import "ChattyViewController.h"
 #import "StringTemplate.h"
 #import "BrowserViewController.h"
+#import "ChattySplitViewRootVCProtocol.h"
 @import SafariServices;
 
-@interface StoryViewController : ModelListViewController <ModelLoadingDelegate, UIWebViewDelegate, SFSafariViewControllerDelegate> {
+@interface StoryViewController : ModelListViewController <ModelLoadingDelegate,
+                                                          UIWebViewDelegate,
+                                                          SFSafariViewControllerDelegate,
+                                                          ChattySplitViewRootVCProtocol> {
     NSUInteger storyId;
     ModelLoader *storyLoader;
     Story *story;

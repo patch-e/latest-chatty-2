@@ -76,7 +76,7 @@
 
 - (UIViewController *)showingViewController {
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+        return [LatestChatty2AppDelegate delegate].splitViewController;
     } else {
         return self;
     }

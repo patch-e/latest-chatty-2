@@ -29,9 +29,9 @@
     [super layoutSubviews];
     
     // are we compact?
-    BOOL isCompact = [[LatestChatty2AppDelegate delegate] isSplitView];
-    BOOL isPad = [[LatestChatty2AppDelegate delegate] isPadDevice];
     
+    BOOL isPad = [[LatestChatty2AppDelegate delegate] isPadDevice];
+    BOOL isCompact = (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact && isPad);
     // Set the highlight text color to white
     preview.highlightedTextColor = [UIColor whiteColor];
     usernameLabel.highlightedTextColor = [UIColor whiteColor];

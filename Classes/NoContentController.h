@@ -6,6 +6,8 @@
 //  Copyright 2010 Beautiful Pixel. All rights reserved.
 //
 
-@interface NoContentController : UIViewController {}
+#import "ChattySplitViewRootVCProtocol.h"
+
+@interface NoContentController : UIViewController<ChattySplitViewRootVCProtocol> {}
 
 @end

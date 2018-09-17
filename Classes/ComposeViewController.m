@@ -8,6 +8,9 @@
 
 #import "ComposeViewController.h"
 
+#import "ChattySplitViewController.h"
+#import "UITraitCollection+Chatty.h"
+
 @implementation ComposeViewController
 
 @synthesize storyId, post;
@@ -154,7 +157,7 @@
 
 - (UIViewController *)showingViewController {
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        return [LatestChatty2AppDelegate delegate].slideOutViewController;
+        return [LatestChatty2AppDelegate delegate].splitViewController;
     } else {
         return self;
     }
@@ -371,16 +374,16 @@
                            nil];
     [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
     
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
+    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
+        [[LatestChatty2AppDelegate delegate].splitViewController forceCollapse];
     }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 	[picker dismissViewControllerAnimated:YES completion:nil];
     
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
+    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
+        [[LatestChatty2AppDelegate delegate].splitViewController forceCollapse];
     }
 }
 
@@ -521,6 +524,12 @@
     [alertController addAction:okAction];
     
     [[self showingViewController] presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark ChattySplitViewRootVCProtocol
+
+- (BOOL)canActAsRootForSplitViewEvents {
+    return YES;
 }
 
 #pragma mark Cleanup

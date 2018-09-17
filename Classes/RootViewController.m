@@ -8,9 +8,10 @@
 
 #import "RootViewController.h"
 
+#import "ChattySplitViewController.h"
 #import "CustomBadge.h"
-
 #import "NoContentController.h"
+#import "UITraitCollection+Chatty.h"
 
 @implementation RootViewController
 
@@ -109,7 +110,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForDonate) name:@"PushBrowserForDonate" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSelectedIndexNotification:) name:@"SetSelectedIndex" object:nil];
 }
 
@@ -163,7 +163,7 @@
     [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                               title:@"Credits"
                                       isForShackLOL:NO];
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
         [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
@@ -176,7 +176,7 @@
     [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                               title:@"Licenses"
                                       isForShackLOL:NO];
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
         [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
@@ -189,16 +189,10 @@
     [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                              title:@"Donate"
                                      isForShackLOL:NO];
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
         [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
     } else {
         [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
-    }
-}
-
-- (void)updateViewsForMultitasking:(NSObject *) sender {
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self.tableView reloadData];
     }
 }
 
@@ -341,7 +335,7 @@
         case 3:
             viewController = [SearchViewController controllerWithNib];
             
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
                 viewController = nil;
             }
@@ -354,7 +348,7 @@
                                                                        title:nil
                                                                isForShackLOL:YES];
             
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
                 viewController = nil;
             }
@@ -378,7 +372,7 @@
     if (viewController) {
         if (modal && [[LatestChatty2AppDelegate delegate] isPadDevice]) {
             viewController.modalPresentationStyle = UIModalPresentationFormSheet;
-            [appDelegate.slideOutViewController presentViewController:viewController animated:YES completion:nil];
+            [appDelegate.splitViewController presentViewController:viewController animated:YES completion:nil];
         } else {
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 [self.navigationController pushViewController:viewController animated:YES];
