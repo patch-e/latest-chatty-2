@@ -342,15 +342,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
-    [self resetLayout:YES];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {        
-    // Reload the post to fit the new view sizes.
-    [self tableView:tableView didSelectRowAtIndexPath:self.selectedIndexPath];
-}
-
 #pragma mark -
 #pragma mark Thread pinning
 - (void)togglePinThread {
@@ -374,10 +365,9 @@
     NSTimeInterval theTimeInterval = 0.75;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
-    [hud setLabelText:@"Pinned!"];
-    [hud setColor:[UIColor lcCellPinnedColor]];
-//        [hud setYOffset:-33];
-    [hud hide:YES afterDelay:theTimeInterval];
+    hud.label.text = @"Pinned!";
+    hud.bezelView.color = [UIColor lcCellPinnedColor];
+    [hud hideAnimated:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadPinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
     
@@ -394,10 +384,9 @@
     NSTimeInterval theTimeInterval = 0.75;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:MBProgressHUDModeText];
-    [hud setLabelText:@"Unpinned!"];
-    [hud setColor:[UIColor lcBarTintColor]];
-//        [hud setYOffset:-33];
-    [hud hide:YES afterDelay:theTimeInterval];
+    hud.label.text = @"Unpinned!";
+    hud.bezelView.color = [UIColor lcBarTintColor];
+    [hud hideAnimated:YES afterDelay:theTimeInterval];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ThreadUnpinned" object:self userInfo:@{@"modelId": [NSNumber numberWithUnsignedInteger:rootPost.modelId]}];
     
@@ -697,7 +686,7 @@
                                                   delegate:self
                                          cancelButtonTitle:@"Cancel"
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:@"Search for Posts", @"Send a Message", nil];
+                                         otherButtonTitles:@"Search for Posts", @"Send a Message", @"Report", nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
         [dialog showInView:[LatestChatty2AppDelegate delegate].splitViewController.view];
@@ -739,6 +728,51 @@
     
     return minTimeLevelPostIndex;
 }
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (NSArray<UIKeyCommand *>*)keyCommands {
+    return @[
+             [UIKeyCommand keyCommandWithInput:@"a" modifierFlags:0 action:@selector(prevTab:) discoverabilityTitle:@"Previous Subthread"],
+             [UIKeyCommand keyCommandWithInput:@"z" modifierFlags:0 action:@selector(nextTab:) discoverabilityTitle:@"Next Subthread"],
+             [UIKeyCommand keyCommandWithInput:UIKeyInputUpArrow modifierFlags:0 action:@selector(prevTabThreader:) discoverabilityTitle:@"Previous Thread"],
+             [UIKeyCommand keyCommandWithInput:UIKeyInputDownArrow modifierFlags:0 action:@selector(nextTabThreader:) discoverabilityTitle:@"Next Thread"],
+             [UIKeyCommand keyCommandWithInput:@"r" modifierFlags:UIKeyModifierCommand action:@selector(refreshTableview:) discoverabilityTitle:@"Refresh Threads"],
+             [UIKeyCommand keyCommandWithInput:@"p" modifierFlags:UIKeyModifierCommand action:@selector(threadPinnedKey:) discoverabilityTitle:@"Toggle Thread Pinned"],
+             [UIKeyCommand keyCommandWithInput:@"r" modifierFlags:0 action:@selector(replyToPost:) discoverabilityTitle:@"Reply to Post"]
+             ];
+}
+
+- (void)threadPinnedKey:(UIKeyCommand *)sender {
+    [self togglePinThread];
+}
+
+- (void)refreshTableview:(UIKeyCommand *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshView" object:self];
+}
+
+- (void)prevTabThreader:(UIKeyCommand *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PrevThread" object:self];
+}
+
+- (void)nextTabThreader:(UIKeyCommand *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NextThread" object:self];
+}
+
+- (void)prevTab:(UIKeyCommand *)sender {
+    [self previous];
+}
+
+- (void)nextTab:(UIKeyCommand *)sender {
+    [self next];
+}
+
+- (void)replyToPost:(UIKeyCommand *)sender {
+    [self tappedReplyButton];
+}
+
 
 - (IBAction)previous {
     NSIndexPath *oldIndexPath = selectedIndexPath;
@@ -833,10 +867,9 @@
         NSTimeInterval theTimeInterval = 0.75;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
-        [hud setLabelText:@"Modded!"];
-        [hud setColor:[UIColor lcBarTintColor]];
-//        [hud setYOffset:-33];
-        [hud hide:YES afterDelay:theTimeInterval];
+        hud.label.text = @"Modded!";
+        hud.bezelView.color = [UIColor lcBarTintColor];
+        [hud hideAnimated:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Tag this Post"]) { //tagging
         [Tag tagPostId:postId tag:[actionSheet buttonTitleAtIndex:buttonIndex]];
         
@@ -844,10 +877,9 @@
         NSTimeInterval theTimeInterval = 0.75;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:MBProgressHUDModeText];
-        [hud setLabelText:@"Tagged!"];
-        [hud setColor:[UIColor lcBarTintColor]];
-//        [hud setYOffset:-33];
-        [hud hide:YES afterDelay:theTimeInterval];
+        hud.label.text = @"Tagged!";
+        hud.bezelView.color = [UIColor lcBarTintColor];
+        [hud hideAnimated:YES afterDelay:theTimeInterval];
     } else if ([[actionSheet title] isEqualToString:@"Author Actions"]) { //author actions
         NSString *author = [post author];
         UIViewController *viewController;
@@ -862,6 +894,12 @@
         // start a shackmessage with this author as the recipient
         if (buttonIndex == 1) {
             viewController = [[SendMessageViewController alloc] initWithRecipient:author];
+        }
+        // start a shackmessage to duke nuked reporting this author/post
+        if (buttonIndex == 2) {
+            unsigned long pid = (unsigned long)postId;
+            NSString *body = [NSString stringWithFormat:@"I would like to report user \"%@\", author of post http://www.shacknews.com/chatty?id=%lu#item_%lu for not adhering to the Shacknews guidelines.", author, pid, pid];
+            viewController = [[SendMessageViewController alloc] initWithReportBody:body];
         }
         
         // push the resulting view controller
@@ -924,10 +962,6 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 #pragma mark - ChattySplitViewRootVCProtocol

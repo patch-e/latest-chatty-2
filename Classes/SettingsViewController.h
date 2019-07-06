@@ -8,7 +8,7 @@
 
 #import "Post.h"
 
-@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIGestureRecognizerDelegate> {
+@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIGestureRecognizerDelegate, SFSafariViewControllerDelegate> {
     IBOutlet UITableView     *tableView;
     IBOutlet UIBarButtonItem *saveButton;
     IBOutlet UIBarButtonItem *cancelButton;
@@ -26,8 +26,8 @@
 
     UISwitch     *orderByPostDateSwitch;
     UISwitch     *saveSearchesSwitch;
+    UISwitch     *swipeBackSwitch;
     UISwitch     *collapseSwitch;
-//    UISwitch     *landscapeSwitch;
     UISwitch     *lolTagsSwitch;
     UISwitch     *youTubeSwitch;
     UIPickerView *browserPrefPicker;

@@ -39,21 +39,6 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self.viewDeckController closeLeftViewAnimated:YES];
-        if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-        } else {
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        }
-    }
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -107,9 +92,6 @@
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Sidebar-bg.png"]];
     self.tableView.backgroundView.contentMode = UIViewContentModeScaleToFill;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForCredits) name:@"PushBrowserForCredits" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForLicenses) name:@"PushBrowserForLicenses" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushBrowserForDonate) name:@"PushBrowserForDonate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSelectedIndexNotification:) name:@"SetSelectedIndex" object:nil];
 }
 
@@ -155,45 +137,6 @@
     
     [self setSelectedIndex:[NSIndexPath indexPathForRow:index inSection:0]];
     [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
-}
-
-- (void)pushBrowserForCredits {
-    NSString *urlString = @"http://mccrager.com/latestchatty/credits";
-    UIViewController *viewController =
-    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
-                                              title:@"Credits"
-                                      isForShackLOL:NO];
-    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
-        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
-    } else {
-        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
-    }
-}
-
-- (void)pushBrowserForLicenses {
-    NSString *urlString = @"http://mccrager.com/latestchatty/licenses";
-    UIViewController *viewController =
-    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
-                                              title:@"Licenses"
-                                      isForShackLOL:NO];
-    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
-        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
-    } else {
-        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
-    }
-}
-
-- (void)pushBrowserForDonate {
-    NSString *urlString = @"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=p.crager@gmail.com&item_name=Latest+Chatty+app+donation&currency_code=USD";
-    UIViewController *viewController =
-    [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
-                                             title:@"Donate"
-                                     isForShackLOL:NO];
-    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
-        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
-    } else {
-        [[LatestChatty2AppDelegate delegate].navigationController pushViewController:viewController animated:YES];
-    }
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
@@ -343,7 +286,7 @@
             
         case 4:
             // Pass user= on the URL for Shack[LOL] in Browser web view.
-            urlString = [[NSString stringWithFormat:@"http://lol.lmnopc.com?lc_webview=1&user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            urlString = [[NSString stringWithFormat:@"https://www.shacknews.com/tags-home?user=%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
             viewController = [[BrowserViewController alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]
                                                                        title:nil
                                                                isForShackLOL:YES];

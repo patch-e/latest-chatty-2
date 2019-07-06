@@ -14,8 +14,8 @@
 #import "NoContentController.h"
 #import "IIViewDeckController.h"
 #import "UITraitCollection+Chatty.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+@import Firebase;
+@import Crashlytics;
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
@@ -185,7 +185,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Crashlytics startWithAPIKey:@"7e5579f671abccb0156cc1a6de1201f981ef170c"];
+    [FIRApp configure];
     
     [self customizeAppearance];
 
@@ -205,7 +205,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"password",
                                      @"winchatty.com/chatty",       @"serverApi",
                                      [NSNumber numberWithBool:NO],  @"collapse",
-//                                     [NSNumber numberWithBool:YES], @"landscape",
                                      [NSNumber numberWithBool:NO],  @"useYouTube",
                                      [NSNumber numberWithBool:NO],  @"pushMessages",
                                      [NSNumber numberWithBool:YES], @"pushMessages.firstLaunch",
@@ -214,23 +213,25 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                      @"",                           @"pushMessages.deviceToken",
                                      [NSNumber numberWithBool:YES], @"picsResize",
                                      [NSNumber numberWithFloat:0.7],@"picsQuality",
-                                     [NSNumber numberWithInt:0],    @"browserPref",
+                                     [NSNumber numberWithInt:1],    @"browserPref",
                                      [NSNumber numberWithBool:NO],  @"useChrome",
                                      [NSNumber numberWithBool:YES], @"postCategory.informative",
-                                     [NSNumber numberWithBool:YES], @"postCategory.offtopic",
-                                     [NSNumber numberWithBool:YES], @"postCategory.stupid",
-                                     [NSNumber numberWithBool:YES], @"postCategory.political",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.offtopic",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.stupid",
+                                     [NSNumber numberWithBool:NO],  @"postCategory.political",
                                      [NSNumber numberWithBool:NO],  @"postCategory.nws",
                                      [NSNumber numberWithInt:0],    @"lastRefresh",
                                      [NSNumber numberWithInt:1],    @"grippyBarPosition",
-                                     [NSNumber numberWithBool:NO],  @"orderByPostDate",
+                                     [NSNumber numberWithBool:YES], @"orderByPostDate",
                                      [NSNumber numberWithInt:0],    @"searchSegmented",
                                      [NSMutableArray array],        @"pinnedThreads",
                                      [NSMutableArray array],        @"collapsedThreads",
                                      [NSMutableArray array],        @"recentSearches",
                                      [NSNumber numberWithBool:NO],  @"superSecretFartMode",
                                      [NSNumber numberWithBool:YES], @"saveSearches",
-                                     [NSNumber numberWithBool:NO],  @"lolTags",
+                                     [NSNumber numberWithBool:YES], @"swipeBack",
+                                     [NSNumber numberWithBool:YES], @"lolTags",
+                                     [NSNumber numberWithBool:YES], @"guidelines.firstLaunch",
                                      nil];
     [defaults registerDefaults:defaultSettings];
     
@@ -240,7 +241,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
                                              selector:@selector(storeChanged:)
                                                  name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                object:store];
-    [Fabric with:@[[Crashlytics class]]];
+
     [CrashlyticsKit setUserName:[defaults stringForKey:@"username"]];
     
     // clear the captured date of the last successful lol fetch
@@ -251,7 +252,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
     [defaults synchronize];
     // fire synchronize on app load to sync settings from iCloud
-    // freshing install: will pull all existing iCloud user settings down and put into user defaults database
+    // fresh install: will pull all existing iCloud user settings down and put into user defaults database
     // existing install: will pull down any changes in the iCloud user settings and sync to the user defaults database
     [store synchronize];
     
@@ -262,6 +263,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     }
     
     [self pushRegistration];
+    [self promptGuidelines];
     
     [window makeKeyAndVisible];
     
@@ -281,7 +283,7 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
         [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
         [NSURLConnection connectionWithRequest:request delegate:nil];
         
-// Use for testing login above and to output current cookies for www.shacknews.com
+//        Use for testing login above and to output current cookies for www.shacknews.com
 //        NSString *responseBody = [NSString stringWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil]];
 //        NSLog(@"%@", responseBody);
 //        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"https://www.shacknews.com"]];
@@ -651,6 +653,20 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     viewController = nil;
 }
 
+- (void)presentViewController:(UIViewController *)viewController presentModally:(BOOL)modal {
+    if ([self isPadDevice]) {
+        if (modal) {
+            [self.splitViewController presentViewController:viewController animated:YES completion:nil];
+        } else {
+            [self.contentNavigationController presentViewController:viewController animated:YES completion:nil];
+        }
+    } else {
+        [self.navigationController presentViewController:viewController animated:YES completion:nil];
+    }
+    
+    viewController = nil;
+}
+
 #pragma mark - Appearance customizations
 
 // Custom appearance settings for UIKit items
@@ -689,22 +705,6 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     } else {
         // iPhone can rotate to any interface except portrait upside down
         return UIInterfaceOrientationMaskPortrait;
-    }
-}
-
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // never allow portrait upside down for iPhone
-    if (![[LatestChatty2AppDelegate delegate] isPadDevice] && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-        return NO;
-    }
-
-    // iPad, allow rotation
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        return YES;
-    } else {
-        // allow rotation if the orientation isn't landscape
-        if (UIInterfaceOrientationIsLandscape(interfaceOrientation))return NO;
-        return YES;
     }
 }
 
@@ -904,6 +904,47 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         [self handleViewController:[self makeThreadViewController]];
+    }
+}
+
+#pragma mark - Guidelines on first launch
+
+-(void)promptGuidelines {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults boolForKey:@"guidelines.firstLaunch"] == YES) {
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Guidelines"
+                                              message:@"By using LatestChatty, you agree to all Shacknews community posting guidelines."
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *viewAction = [UIAlertAction
+                                     actionWithTitle:@"View"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction *action)
+                                     {
+                                         // push guidelines webview
+                                         NSString *urlString = @"https://www.shacknews.com/guidelines";
+                                         SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:urlString]];
+                                         [svc setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+                                         [svc setModalPresentationStyle:UIModalPresentationFormSheet];
+                                         [svc setDelegate:self];
+                                         [svc setPreferredBarTintColor:[UIColor lcBarTintColor]];
+                                         [svc setPreferredControlTintColor:[UIColor whiteColor]];
+                                         [svc setModalPresentationCapturesStatusBarAppearance:YES];
+                                         [self presentViewController:svc presentModally:YES];
+                                     }];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:nil];
+        
+        [alertController addAction:viewAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController presentModally:NO];
+        [defaults setBool:NO forKey:@"guidelines.firstLaunch"];
     }
 }
 

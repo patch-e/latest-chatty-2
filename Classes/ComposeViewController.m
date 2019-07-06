@@ -171,13 +171,12 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    // resize the scroll view on rotation
-    [self sizeTagViewScrollView];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        [self sizeTagViewScrollView];
+    }];
 }
 
 - (void)sizeTagViewScrollView {
@@ -348,36 +347,64 @@
 	[self hideActivityIndicator];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker
-        didFinishPickingImage:(UIImage *)anImage
-                  editingInfo:(NSDictionary *)editingInfo
-{
-	[picker dismissViewControllerAnimated:YES completion:nil];
-	[postContent resignFirstResponder];
-	Image *image = [[Image alloc] initWithImage:anImage];
-	image.delegate = self;
-	
-	UIProgressView* progressBar = [self showActivityIndicator:YES];
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [postContent resignFirstResponder];
+    
+    UIImage *anImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    Image *image = [[Image alloc] initWithImage:anImage];
+    image.delegate = self;
+    
+    UIProgressView* progressBar = [self showActivityIndicator:YES];
     BOOL picsResize = [[NSUserDefaults standardUserDefaults] boolForKey:@"picsResize"];
     float picsQuality = [[NSUserDefaults standardUserDefaults] floatForKey:@"picsQuality"];
     
     if (picsResize) {
-//        [image autoRotate:800 scale:YES];
         [image autoRotate:1600 scale:YES];
     } else {
         [image autoRotate:anImage.size.width scale:NO];
     }
-
+    
     NSDictionary *args = [NSDictionary dictionaryWithObjectsAndKeys:
-                           progressBar, @"progressBar",
-                           [NSNumber numberWithFloat:picsQuality], @"qualityAmount",
-                           nil];
+                          progressBar, @"progressBar",
+                          [NSNumber numberWithFloat:picsQuality], @"qualityAmount",
+                          nil];
     [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
     
     if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
         [[LatestChatty2AppDelegate delegate].splitViewController forceCollapse];
     }
 }
+
+//- (void)imagePickerController:(UIImagePickerController *)picker
+//        didFinishPickingImage:(UIImage *)anImage
+//                  editingInfo:(NSDictionary *)editingInfo
+//{
+//    [picker dismissViewControllerAnimated:YES completion:nil];
+//    [postContent resignFirstResponder];
+//    Image *image = [[Image alloc] initWithImage:anImage];
+//    image.delegate = self;
+//
+//    UIProgressView* progressBar = [self showActivityIndicator:YES];
+//    BOOL picsResize = [[NSUserDefaults standardUserDefaults] boolForKey:@"picsResize"];
+//    float picsQuality = [[NSUserDefaults standardUserDefaults] floatForKey:@"picsQuality"];
+//
+//    if (picsResize) {
+//        [image autoRotate:1600 scale:YES];
+//    } else {
+//        [image autoRotate:anImage.size.width scale:NO];
+//    }
+//
+//    NSDictionary *args = [NSDictionary dictionaryWithObjectsAndKeys:
+//                           progressBar, @"progressBar",
+//                           [NSNumber numberWithFloat:picsQuality], @"qualityAmount",
+//                           nil];
+//    [image performSelectorInBackground:@selector(uploadAndReturnImageUrlWithDictionary:) withObject:args];
+//
+//    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+//        [[LatestChatty2AppDelegate delegate].slideOutViewController collapse];
+//    }
+//}
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 	[picker dismissViewControllerAnimated:YES completion:nil];

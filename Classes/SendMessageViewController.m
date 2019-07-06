@@ -40,6 +40,18 @@
     return self;
 }
 
+- (id)initWithReportBody:(NSString *)aBody {
+    self = [self initWithNib];
+    
+    self.title = @"Report";
+    self.recipientString = @"Duke Nuked";
+    self.subjectString = @"Reporting Author of Post";
+    self.bodyString = aBody;
+    self.reportMessage = YES;
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -56,7 +68,9 @@
     [self.subject setText:self.subjectString];
     [self.body setText:self.bodyString];
     if (self.bodyString) {
-        [self setupReply];
+        if (!self.reportMessage) {
+            [self setupReply];
+        }
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     
@@ -105,16 +119,8 @@
     }
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//    scrollView.contentSize = CGSizeMake(scrollView.frameWidth, (self.recipient.frameHeight*2)+5);
-}
-
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return [LatestChatty2AppDelegate shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

@@ -50,7 +50,6 @@
 + (LatestChatty2AppDelegate*)delegate;
 + (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation;
 + (UIInterfaceOrientationMask)supportedInterfaceOrientations;
-+ (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)pushRegistration;
 - (void)pushUnregistration;
 
@@ -63,5 +62,7 @@
 - (BOOL)isPadDevice;
 - (BOOL)isForceTouchEnabled;
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
+- (void)handleViewController:(UIViewController *)viewController;
+- (void)presentViewController:(UIViewController *)viewController presentModally:(BOOL)modal;
 	
 @end
