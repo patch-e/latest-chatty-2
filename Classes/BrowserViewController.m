@@ -105,14 +105,15 @@
     
     [self.actionButton setEnabled:YES];
     
-    NSString *docTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    if (!initWithTitle) {
-        if (docTitle.length > 0) {
-            self.title = docTitle;
-        } else {
+    // disabling for now -tkidd
+    //NSString *docTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//    if (!initWithTitle) {
+//        if (docTitle.length > 0) {
+//            self.title = docTitle;
+//        } else {
             self.title = @"Browser";
-        }
-    }
+//        }
+//    }
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {
@@ -162,7 +163,7 @@
     AppleSafariActivity *safariActivity = [[AppleSafariActivity alloc] init];
     GoogleChromeActivity *chromeActivity = [[GoogleChromeActivity alloc] init];
     
-    NSArray *activityItems = @[[webView.request URL]];
+    NSArray *activityItems = @[[webView URL]];
     
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
                                                         initWithActivityItems:activityItems
@@ -191,16 +192,16 @@
 }
 
 - (void)copyURL {
-    [[UIPasteboard generalPasteboard] setString:[[webView.request URL] absoluteString]];
+    [[UIPasteboard generalPasteboard] setString:[[webView URL] absoluteString]];
 }
 
 - (void)openInSafari {
-    [[UIApplication sharedApplication] openURL:[webView.request URL]];
+    [[UIApplication sharedApplication] openURL:[webView URL]];
 }
 
 - (void)openInChrome {
     LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSURL *chromeURL = [appDelegate urlAsChromeScheme:[webView.request URL]];
+    NSURL *chromeURL = [appDelegate urlAsChromeScheme:[webView URL]];
     [[UIApplication sharedApplication] openURL:chromeURL];
     chromeURL = nil;
 }
@@ -213,7 +214,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [webView loadHTMLString:@"" baseURL:nil];
-    [webView setDelegate:nil];
+    [webView setUIDelegate:nil];
+    [webView setNavigationDelegate:nil];
     [webView stopLoading];
 }
 

@@ -216,7 +216,9 @@
     [storyLoader cancel];
     
     [content stopLoading];
-    content.delegate = nil;
+    
+    // find WK equivalent -tkidd
+//    content.delegate = nil;
 }
 
 @end

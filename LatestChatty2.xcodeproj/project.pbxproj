@@ -22,6 +22,8 @@
 		5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
+		A1F6A37D234DA382005CDC5E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F6A37C234DA381005CDC5E /* WebKit.framework */; };
+		A1F6A382234DA4E6005CDC5E /* WKWebView+FLWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F6A381234DA4E6005CDC5E /* WKWebView+FLWKWebView.m */; };
 		A254B843116FFE9A001534FF /* MenuBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A254B841116FFE9A001534FF /* MenuBorder.png */; };
 		A254B847116FFEB0001534FF /* SlideOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A254B846116FFEB0001534FF /* SlideOutViewController.m */; };
 		A27EA7221171E60D0072EB59 /* SliderDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = A27EA7211171E60D0072EB59 /* SliderDivider.png */; };
@@ -320,6 +322,10 @@
 		796AE0C85AF0050D01E28E4A /* Pods-LatestChatty2.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.distribution.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		922E140961FA7B1591624775 /* Pods-LatestChatty2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestChatty2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestChatty2/Pods-LatestChatty2.debug.xcconfig"; sourceTree = "<group>"; };
+		A1F6A37C234DA381005CDC5E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A1F6A37F234DA4E6005CDC5E /* WKWebView+FLWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+FLWKWebView.h"; sourceTree = "<group>"; };
+		A1F6A380234DA4E6005CDC5E /* FLWebViewProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWebViewProvider.h; sourceTree = "<group>"; };
+		A1F6A381234DA4E6005CDC5E /* WKWebView+FLWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+FLWKWebView.m"; sourceTree = "<group>"; };
 		A254B841116FFE9A001534FF /* MenuBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuBorder.png; path = Assets/MenuBorder.png; sourceTree = "<group>"; };
 		A254B845116FFEB0001534FF /* SlideOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutViewController.h; sourceTree = "<group>"; };
 		A254B846116FFEB0001534FF /* SlideOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutViewController.m; sourceTree = "<group>"; };
@@ -669,6 +675,7 @@
 				5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				D66BFC3592EEA6A19C15647C /* libPods-LatestChatty2.a in Frameworks */,
+				A1F6A37D234DA382005CDC5E /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +746,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A1F6A37E234DA4E6005CDC5E /* FLWebViewProvider */,
 				FA2B47500F7E1DA30074064A /* Base64Additions */,
 				CD7C24181754653900D90942 /* HKHelperKit */,
 				27D09EB42199247300966C56 /* HTMLEscraper */,
@@ -779,6 +787,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1F6A37C234DA381005CDC5E /* WebKit.framework */,
 				CD50D7F41BA59C9C007108E4 /* libc++.tbd */,
 				CDA26B6218234F4100239BA9 /* Security.framework */,
 				CD13747A17EA90A0002A2551 /* AVFoundation.framework */,
@@ -801,6 +810,16 @@
 				59EC55B117EDF29C00F513A9 /* NSString+Regex.m */,
 			);
 			name = "NSString+Regex";
+			sourceTree = "<group>";
+		};
+		A1F6A37E234DA4E6005CDC5E /* FLWebViewProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A1F6A37F234DA4E6005CDC5E /* WKWebView+FLWKWebView.h */,
+				A1F6A380234DA4E6005CDC5E /* FLWebViewProvider.h */,
+				A1F6A381234DA4E6005CDC5E /* WKWebView+FLWKWebView.m */,
+			);
+			path = FLWebViewProvider;
 			sourceTree = "<group>";
 		};
 		CD025E591FB5C80900695C8A /* SloppySwiper */ = {
@@ -1537,6 +1556,7 @@
 				FA5FCE8D0F6F7B6A00878F27 /* TableCellFromNib.m in Sources */,
 				FA5FCE930F6F7CA600878F27 /* StoryCell.m in Sources */,
 				59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */,
+				A1F6A382234DA4E6005CDC5E /* WKWebView+FLWKWebView.m in Sources */,
 				FA04800D0F70BD0500F752A6 /* Post.m in Sources */,
 				FA0481220F70D10300F752A6 /* ChattyViewController.m in Sources */,
 				FA6EDD6F0F70DA0400AAF4E4 /* ThreadCell.m in Sources */,
@@ -1629,7 +1649,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.10.4;
@@ -1661,7 +1681,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.10.4;
@@ -1857,7 +1877,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LatestChatty2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 4.10.4;
