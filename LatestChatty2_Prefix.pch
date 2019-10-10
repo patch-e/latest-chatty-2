@@ -13,7 +13,7 @@
   #import "LatestChatty2AppDelegate.h"
   #import "Categories.h"
   #import "NSString+Regex.h"
-  #import <AFNetworking/AFNetworking.h>
+  #import "AFNetworking.h"
 #endif
 
 /*
