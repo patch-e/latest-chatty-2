@@ -55,7 +55,7 @@
 //- (NSString *)postBodyWithYoutubeWidgets:(NSString *)body;
 
 - (void)refreshWithThreadId:(NSUInteger)threadId;
-
+- (void)showAuthorActions;
 - (void)resetLayout:(BOOL)animated;
 
 @end

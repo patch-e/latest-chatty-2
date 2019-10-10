@@ -41,6 +41,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    webView.opaque = NO;
+    webView.backgroundColor = [UIColor clearColor];
+    webView.navigationDelegate = self;
+
     if (self.isShackLOL) {
         if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
             UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu-Button-List.png"]
@@ -124,15 +128,16 @@
     [self.webView reload];
 }
 
-- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         LatestChatty2AppDelegate *appDelegate = (LatestChatty2AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        UIViewController *viewController = [appDelegate viewControllerForURL:[aRequest URL]];
+        UIViewController *viewController = [appDelegate viewControllerForURL:[navigationAction.request URL]];
         
         // No special controller, handle the URL.
         if (viewController == nil) {
-            return YES;
+            decisionHandler(WKNavigationActionPolicyAllow);
+            return;
         }
         
         // save scroll position of web view before pushing view controller
@@ -140,10 +145,11 @@
         
         [self.navigationController pushViewController:viewController animated:YES];
         
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
