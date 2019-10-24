@@ -22,6 +22,7 @@
 		5907C5AD10A69A0A0028D630 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AC10A69A0A0028D630 /* CFNetwork.framework */; };
 		5907C5AF10A69A0A0028D630 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907C5AE10A69A0A0028D630 /* SystemConfiguration.framework */; };
 		59EC55B417EDF56600F513A9 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 59EC55B117EDF29C00F513A9 /* NSString+Regex.m */; };
+		A15FD904236143C60012112D /* Stylesheet-mac.css in Resources */ = {isa = PBXBuildFile; fileRef = A15FD903236143C60012112D /* Stylesheet-mac.css */; };
 		A1F6A37D234DA382005CDC5E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F6A37C234DA381005CDC5E /* WebKit.framework */; };
 		A1F6A382234DA4E6005CDC5E /* WKWebView+FLWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F6A381234DA4E6005CDC5E /* WKWebView+FLWKWebView.m */; };
 		A1F6A38A234EECE6005CDC5E /* BadgeStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F6A387234EECE6005CDC5E /* BadgeStyle.m */; };
@@ -341,6 +342,7 @@
 		61BB54ED1151A43C00BFB041 /* SendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageViewController.m; sourceTree = "<group>"; };
 		61BB54F11151A47D00BFB041 /* SendMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendMessageViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A15FD903236143C60012112D /* Stylesheet-mac.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "Stylesheet-mac.css"; path = "Templates/Stylesheet-mac.css"; sourceTree = "<group>"; };
 		A1F6A37C234DA381005CDC5E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A1F6A37F234DA4E6005CDC5E /* WKWebView+FLWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+FLWKWebView.h"; sourceTree = "<group>"; };
 		A1F6A380234DA4E6005CDC5E /* FLWebViewProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWebViewProvider.h; sourceTree = "<group>"; };
@@ -1371,6 +1373,7 @@
 			isa = PBXGroup;
 			children = (
 				CD7C24811754689100D90942 /* Stylesheet.css */,
+				A15FD903236143C60012112D /* Stylesheet-mac.css */,
 				CD7C247D1754689100D90942 /* Message.html */,
 				CD7C247E1754689100D90942 /* Post.html */,
 				CD7C247F1754689100D90942 /* ReviewPost.html */,
@@ -1531,6 +1534,7 @@
 				CD8BA2BA16306A0900ED5C5E /* AppleSafari-Icon@2x.png in Resources */,
 				CD8BA2BB16306A0900ED5C5E /* AppleSafari-Icon@2x~ipad.png in Resources */,
 				CDDAC30517F44E78000FEC8A /* Search-Active@2x.png in Resources */,
+				A15FD904236143C60012112D /* Stylesheet-mac.css in Resources */,
 				CD4370ED1803A4E0008D9DCF /* List-Lifespan-25-Participant@2x.png in Resources */,
 				CD8BA2BC16306A0900ED5C5E /* AppleSafari-Icon~ipad.png in Resources */,
 				CD8BA2C316306A9E00ED5C5E /* GoogleChrome-Icon.png in Resources */,

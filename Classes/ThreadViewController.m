@@ -240,7 +240,11 @@
     
     // Fill in empty web view
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
+#if TARGET_OS_MACCATALYST
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet-mac.css"];
+#else
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
+#endif
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [postView loadHTMLString:htmlTemplate.result baseURL:nil];
     
@@ -441,7 +445,11 @@
     // Create HTML for the post
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Post.html"];
 
+#if TARGET_OS_MACCATALYST
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet-mac.css"];
+#else
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
+#endif
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
     [htmlTemplate setString:post.author forKey:@"author"];

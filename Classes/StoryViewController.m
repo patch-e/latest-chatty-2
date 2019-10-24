@@ -80,7 +80,11 @@
     
     NSString *baseUrlString = [NSString stringWithFormat:@"http://shacknews.com/onearticle.x/%lu", (unsigned long)story.modelId];
     StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
+#if TARGET_OS_MACCATALYST
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet-mac.css"];
+#else
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
+#endif
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:@"" forKey:@"date"];
     [htmlTemplate setString:@"" forKey:@"storyId"];
@@ -121,7 +125,11 @@
     
     StringTemplate *htmlTemplate = [[StringTemplate alloc] initWithTemplateName:@"Story.html"];
     
+#if TARGET_OS_MACCATALYST
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet-mac.css"];
+#else
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
+#endif
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Story formatDate:story.date] forKey:@"date"];
     [htmlTemplate setString:[NSString stringWithFormat:@"%lu", (unsigned long)story.modelId] forKey:@"storyId"];

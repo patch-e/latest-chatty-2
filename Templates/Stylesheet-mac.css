@@ -1,0 +1,191 @@
+html { -webkit-text-size-adjust: none; }
+body {
+  background: rgb(0,0,0);
+  color: white;
+  font-family: arial, helvetica, clean, sans-serif;
+  font-size: 20px;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+}
+
+div.wrapper {
+  clear: both;
+  padding: 10px 7px;
+}
+div.author,
+div.author a {
+  color: rgb(243,231,181);
+  float: left;
+  font-size: 10pt;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(243,231,181,0.5);
+}
+div.date,
+div.date a {
+  color: rgba(255,255,255,0.5);
+  float: right;
+  font-size: 8pt;
+  margin-top: 1px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0.5);
+}
+div.body {
+  color: white;
+  padding: 5px 0;
+  clear: both;
+}
+div.body a {
+  color: rgb(170,222,244);
+  word-wrap: break-word;
+  -webkit-tap-highlight-color: rgba(170,222,244,0.5);
+}
+body.review div.body a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+div.expiration {
+  /*box-shadow: inset 0px 1px rgba(255,255,255,0.08);*/
+  height: 4px;
+  left: 0;
+  margin-bottom: 3px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+div.expiration.background {
+  opacity: 0.6;
+}
+div.tags {
+  display: none;
+  clear: both;
+  color: #000;
+  font-size: 7.75pt;
+  font-weight: 500;
+  line-height: 10pt;
+  margin-top: 20px;
+}
+div.tags.show {
+  display: block;
+}
+div.tags span {
+  display: inline-block;
+}
+span.lol { color: rgba(255,126,0,1.0);   }
+span.inf { color: rgba(0,149,223,1.0);   }
+span.unf { color: rgba(255,0,0,1.0);     }
+span.tag { color: rgba(130,208,2,1.0);   }
+span.wtf { color: rgba(210,0,208,1.0);   }
+span.wow { color: rgba(196,163,179,1.0); }
+span.aww { color: rgba(19,164,167,1.0);  }
+
+/*
+   Comment formatting styles
+*/
+
+span.jt_red    { color: #FF0000; }
+span.jt_green  { color: #8DC63F; }
+span.jt_blue   { color: #44AEDF; }
+span.jt_yellow { color: #FFDE00; }
+span.jt_olive  { color: olive;   }
+span.jt_lime   { color: #C0FFC0; }
+span.jt_orange { color: #F7941C; }
+span.jt_pink   { color: #F49AC1; }
+
+span.jt_spoiler {
+  background-color: #383838;
+  color: #383838;
+}
+
+span.jt_spoiler a {
+  border-bottom: 1px solid rgba(170,222,244,0.5);
+  color: #383838;
+}
+
+span.jt_strike {
+  text-decoration: line-through;
+}
+
+span.jt_sample {
+  font-size: 80%;
+}
+
+span.jt_quote {
+  font-family: serif;
+  font-size: 110%;
+}
+
+pre.jt_code {
+  border-left: 1px solid #666666;
+  display: block;
+  font-family: monospace;
+  margin: 5px 0pt 5px 10px;
+  padding: 3px 0pt 3px 10px;
+}
+
+div.youtube-widget {
+  text-align: center;
+}
+div.youtube-widget a {
+  font-size: 80%;
+}
+
+/*
+   Stories
+*/
+
+h1.story-title {
+  clear: both;
+  color: rgb(116,196,255);
+  font-size: 150%;
+  font-weight: 300;
+  margin: 0;
+  /*text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);*/
+}
+
+div.focalbox {
+  background: #444;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  -webkit-border-radius: 20px;
+}
+
+div.articleImage { width: 100% !important; }
+div.articleImage,
+div.focalbox img {
+  border: 2px solid #888;
+  display: block;
+  margin: 10px auto;
+}
+
+div#video #embedswf {
+  display: none; 
+}
+
+div.story-content img,
+div.story-content iframe {
+  height:auto;
+  max-width: 100% !important;
+}
+
+#story div.date,
+#story div.date a {
+  float: none;
+}
+
+/*
+   iPad-only media queries
+*/
+
+@media all and (min-device-width: 768px) and (min-device-height: 1024px) and (orientation:portrait),
+       all and (min-device-width: 768px) and (min-device-height: 1024px) and (orientation:landscape) {
+  div.author,
+  div.author a {
+    font-size: 10.5pt;
+  }
+    
+  div.expiration {
+    height: 8px;
+  }
+
+}

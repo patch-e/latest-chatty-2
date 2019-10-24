@@ -38,7 +38,11 @@
     // Create HTML for the message
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"Message.html"];
     
+#if TARGET_OS_MACCATALYST
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet-mac.css"];
+#else
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
+#endif
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Message formatDate:message.date] forKey:@"date"];
     [htmlTemplate setString:message.from forKey:@"author"];
