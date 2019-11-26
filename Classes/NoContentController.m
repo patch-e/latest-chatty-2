@@ -22,6 +22,12 @@
     return [LatestChatty2AppDelegate supportedInterfaceOrientations];
 }
 
+#pragma mark ChattySplitViewRootVCProtocol
+
+- (BOOL)canActAsRootForSplitViewEvents {
+    return NO;
+}
+
 #pragma mark Cleanup
 
 - (void)dealloc {

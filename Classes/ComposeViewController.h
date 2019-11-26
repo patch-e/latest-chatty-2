@@ -10,8 +10,9 @@
 #import "Image.h"
 #import "ModelListViewController.h"
 #import "BrowserViewController.h"
+#import "ChattySplitViewRootVCProtocol.h"
 
-@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, ImageSendingDelegate, UITextViewDelegate> {
+@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, ImageSendingDelegate, UITextViewDelegate, ChattySplitViewRootVCProtocol> {
     NSInteger storyId;
 	Post *post;
 	

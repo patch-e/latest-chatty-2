@@ -9,8 +9,9 @@
 #import "ChattyViewController.h"
 
 #import "PinnedThreadsLoader.h"
-#include "ThreadViewController.h"
-#include "NoContentController.h"
+#import "ThreadViewController.h"
+#import "NoContentController.h"
+#import "UITraitCollection+Chatty.h"
 
 @interface ChattyViewController ()
 
@@ -158,21 +159,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadPinned:) name:@"ThreadPinned" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(threadUnpinned:) name:@"ThreadUnpinned" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nextThreadBut:) name:@"NextThread" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prevThreadBut:) name:@"PrevThread" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableview:) name:@"RefreshView" object:nil];
-}
-
-- (void)updateViewsForMultitasking:(NSObject *) sender {
-    if ([[LatestChatty2AppDelegate delegate] isCompactView]) {
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
-    } else {
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    }
 }
 
 - (void)threadPinned:(NSNotification *)notification {
@@ -449,7 +435,13 @@
     ComposeViewController *viewController = [[ComposeViewController alloc] initWithStoryId:storyId post:nil];
     
     if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController animated:YES];
+        if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
+            [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:viewController
+                                                                                       animated:YES];
+        }
+        else {
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
 
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"ComposeAppeared" object:self];
     } else {
@@ -626,10 +618,14 @@
     if (indexPath.row < [threads count]) {
         Post *thread = [threads objectAtIndex:indexPath.row];
         
-        [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray array];
-        [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:threadController animated:NO];
-        
         if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
+                [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray array];
+                [[LatestChatty2AppDelegate delegate].contentNavigationController pushViewController:threadController animated:NO];
+            }
+            else {
+                [self.navigationController pushViewController:threadController animated:YES];
+            }
             [threadController refreshWithThreadId:thread.modelId];
         } else {
             [self.navigationController pushViewController:[[ThreadViewController alloc] initWithThreadId:thread.modelId] animated:YES];

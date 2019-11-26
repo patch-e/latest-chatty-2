@@ -8,9 +8,10 @@
 
 #import "RootViewController.h"
 
+#import "ChattySplitViewController.h"
 #import "CustomBadge.h"
-
 #import "NoContentController.h"
+#import "UITraitCollection+Chatty.h"
 
 @implementation RootViewController
 
@@ -91,7 +92,6 @@
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Sidebar-bg.png"]];
     self.tableView.backgroundView.contentMode = UIViewContentModeScaleToFill;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewsForMultitasking:) name:@"UpdateViewsForMultitasking" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setSelectedIndexNotification:) name:@"SetSelectedIndex" object:nil];
 }
 
@@ -137,12 +137,6 @@
     
     [self setSelectedIndex:[NSIndexPath indexPathForRow:index inSection:0]];
     [self.tableView selectRowAtIndexPath:self.selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
-}
-
-- (void)updateViewsForMultitasking:(NSObject *) sender {
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
-        [self.tableView reloadData];
-    }
 }
 
 - (void)didFinishLoadingAllModels:(NSArray *)models otherData:(id)otherData {
@@ -284,7 +278,7 @@
         case 3:
             viewController = [SearchViewController controllerWithNib];
             
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
                 viewController = nil;
             }
@@ -297,7 +291,7 @@
                                                                        title:nil
                                                                isForShackLOL:YES];
             
-            if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+            if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
                 [appDelegate.contentNavigationController setViewControllers:[NSArray arrayWithObject:viewController]];
                 viewController = nil;
             }
@@ -321,7 +315,7 @@
     if (viewController) {
         if (modal && [[LatestChatty2AppDelegate delegate] isPadDevice]) {
             viewController.modalPresentationStyle = UIModalPresentationFormSheet;
-            [appDelegate.slideOutViewController presentViewController:viewController animated:YES completion:nil];
+            [appDelegate.splitViewController presentViewController:viewController animated:YES completion:nil];
         } else {
             if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
                 [self.navigationController pushViewController:viewController animated:YES];

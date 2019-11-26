@@ -8,6 +8,8 @@
 
 #import "StoriesViewController.h"
 
+#import "UITraitCollection+Chatty.h"
+
 @implementation StoriesViewController
 
 @synthesize stories, refreshControl;
@@ -162,7 +164,7 @@
     Story *story = [stories objectAtIndex:indexPath.row];
     StoryViewController *viewController = [[StoryViewController alloc] initWithStoryId:story.modelId];
     
-    if ([[LatestChatty2AppDelegate delegate] isPadDevice]) {
+    if ([UITraitCollection ch_isIpadInRegularSizeClass]) {
         [LatestChatty2AppDelegate delegate].contentNavigationController.viewControllers = [NSArray arrayWithObject:viewController];
     } else {
         [self.navigationController pushViewController:viewController animated:YES];

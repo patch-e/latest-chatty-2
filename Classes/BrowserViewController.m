@@ -205,6 +205,12 @@
     chromeURL = nil;
 }
 
+#pragma mark - ChattySplitViewRootVCProtocol
+
+- (BOOL)canActAsRootForSplitViewEvents {
+    return YES;
+}
+
 #pragma mark Cleanup
 
 - (void)dealloc {

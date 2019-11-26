@@ -6,7 +6,9 @@
 //  Copyright 2009. All rights reserved.
 //
 
-@interface BrowserViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate> {
+#import "ChattySplitViewRootVCProtocol.h"
+
+@interface BrowserViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate, ChattySplitViewRootVCProtocol> {
     NSURLRequest *request;
 
     UIView *topStroke;

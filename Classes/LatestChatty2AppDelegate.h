@@ -15,15 +15,16 @@
 #import "BrowserViewController.h"
 #import "MessagesViewController.h"
 #import "SendMessageViewController.h"
-#import "SlideOutViewController.h"
 #import "IIViewDeckController.h"
 #import "SloppySwiper.h"
 
-@interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate, UISplitViewControllerDelegate, SFSafariViewControllerDelegate> {
+@class ChattySplitViewController;
+
+@interface LatestChatty2AppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
     UIWindow *window;
     UINavigationController *navigationController;
     UINavigationController *contentNavigationController;
-	SlideOutViewController *slideOutViewController;
+    ChattySplitViewController *splitViewController;
     NSUInteger threadId;
 }
 
@@ -34,7 +35,7 @@
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong) IBOutlet UINavigationController *navigationController;
 
-@property (nonatomic, strong) IBOutlet SlideOutViewController *slideOutViewController;
+@property (nonatomic, strong) ChattySplitViewController *splitViewController;
 @property (nonatomic, strong) IBOutlet UINavigationController *contentNavigationController;
 
 @property (strong, nonatomic) UIViewController *centerController;
@@ -59,8 +60,6 @@
 - (id)urlAsChromeScheme:(NSURL *)url;
 - (id)viewControllerForURL:(NSURL *)url;
 - (BOOL)isPadDevice;
-- (BOOL)isCompactView;
-- (BOOL)isSplitView;
 - (BOOL)isForceTouchEnabled;
 - (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
 - (void)handleViewController:(UIViewController *)viewController;
