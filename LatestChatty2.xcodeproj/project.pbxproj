@@ -1413,7 +1413,6 @@
 				LastUpgradeCheck = 0940;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 9UY8SFDNQ8;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1674,7 +1673,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/FormerPods/Fabric.framework/run\"\n";
+			shellScript = "if [[$ARCHS != \"x86_64\"]]; then\n\"${PROJECT_DIR}/FormerPods/Fabric.framework/run\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1789,8 +1788,8 @@
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 4.10.4.2;
-				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = 9UY8SFDNQ8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1832,8 +1831,8 @@
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 4.10.4.2;
-				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2033,8 +2032,8 @@
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 4.10.4.2;
-				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = JA9LQCT6NB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
