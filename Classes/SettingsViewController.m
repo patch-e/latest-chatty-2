@@ -9,7 +9,9 @@
 #import "SettingsViewController.h"
 #import "LCBrowserType.h"
 #import "MBProgressHUD.h"
+#if !TARGET_OS_MACCATALYST
 @import Crashlytics;
+#endif
 
 static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
 
@@ -458,7 +460,9 @@ static NSString *kWoggleBaseUrl = @"http://www.woggle.net/lcappnotification";
     
     [store synchronize];
     
+#if !TARGET_OS_MACCATALYST
     [[Crashlytics sharedInstance] setUserName:[defaults stringForKey:@"username"]];
+#endif
     
     if (![[LatestChatty2AppDelegate delegate] isPadDevice]) {
         //show pin HUD message

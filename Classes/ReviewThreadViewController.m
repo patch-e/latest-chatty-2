@@ -23,6 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    postView.opaque = NO;
+    postView.backgroundColor = [UIColor clearColor];
+    postView.navigationDelegate = self;
+
     [self placePostInWebView:self.rootPost];
     
     [doneButton setTitleTextAttributes:[NSDictionary blueTextAttributesDictionary] forState:UIControlStateNormal];
@@ -46,7 +50,11 @@
     // Create HTML for the post
     StringTemplate *htmlTemplate = [StringTemplate templateWithName:@"ReviewPost.html"];
 
+#if TARGET_OS_MACCATALYST
+    NSString *stylesheet = [NSString stringFromResource:@"Stylesheet-mac.css"];
+#else
     NSString *stylesheet = [NSString stringFromResource:@"Stylesheet.css"];
+#endif
     [htmlTemplate setString:stylesheet forKey:@"stylesheet"];
     [htmlTemplate setString:[Post formatDate:post.date] forKey:@"date"];
     [htmlTemplate setString:post.author forKey:@"author"];
@@ -59,12 +67,13 @@
     [postView loadHTMLString:htmlTemplate.result baseURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.shacknews.com/chatty?id=%lu", (unsigned long)post.modelId]]];
 }
 
-- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        return NO;
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
